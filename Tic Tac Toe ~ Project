@@ -1,0 +1,311 @@
+#include <bits/stdc++.h>
+#define N 3
+
+using namespace std;
+
+char tabla[N][N] = { '1','2','3','4','5','6','7','8','9' }, player1, player2, pozitie1, pozitie2, ct, castigator;
+bool pick = true, done = false;
+
+void abort(void);
+
+bool ocupat(int i, int j) {
+	if (tabla[i][j] != '0' && tabla[i][j] != 'x')
+		return false;
+
+	return true;
+}
+
+void draw() {
+
+	cout << "X SI 0 " << "\n" << "\n";
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++)
+			cout << tabla[i][j] << " ";
+		cout << "\n";
+	}
+	cout << "\n";
+}
+
+void change_board() {
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++)
+			cout << tabla[i][j] << " ";
+		cout << "\n";
+	}
+}
+
+void realegere() {
+
+	cout << "Daca nu ati ales X sau 0, atunci puteti sa o mai faceti o singura data ";
+	cin >> player1 >> player2;
+	if ((player1 == 'x' && player2 == '0') || (player1 == '0' && player2 == 'x'))
+		pick = true;
+	else {
+		pick = false;
+		ct++;
+	}
+	if (ct > 0)
+		abort();
+}
+
+void alegere() {
+
+	cout << "Alegeti X sau 0: "; cin >> player1 >> player2;
+	if ((player1 == 'x' && player2 == '0') || (player1 == '0' && player2 == 'x'))
+		pick = true;
+	else
+		pick = false;
+	while (!pick)
+		realegere();
+
+}
+
+void mutare1() {
+
+	cout << "Alegeti pozitia unde vreti sa mutati " << "\n";
+	cout << "JUCATOR 1: "; cin >> pozitie1;
+
+}
+
+void mutare2() {
+	cout << "JUCATOR 2: "; cin >> pozitie2;
+}
+
+
+void schimbare_tabla() {
+
+	if (player1 == 'x') {
+		if (pozitie1 == '1' && !ocupat(0, 0)) {
+			tabla[0][0] = 'x';
+		}
+
+		if (pozitie1 == '2' && !ocupat(0,1)) {
+			tabla[0][1] = 'x';
+		}
+
+		if (pozitie1 == '3' && !ocupat(0, 2)) {
+			tabla[0][2] = 'x';
+		}
+
+		if (pozitie1 == '4' && !ocupat(1, 0)) {
+			tabla[1][0] = 'x';
+		}
+
+		if (pozitie1 == '5' && !ocupat(1, 1)) {
+			tabla[1][1] = 'x';
+		}
+
+		if (pozitie1 == '6' && !ocupat(1, 2)) {
+			tabla[1][2] = 'x';
+		}
+
+		if (pozitie1 == '7' && !ocupat(2, 0)) {
+			tabla[2][0] = 'x';
+		}
+
+		if (pozitie1 == '8' && !ocupat(2, 1)) {
+			tabla[2][1] = 'x';
+		}
+
+		if (pozitie1 == '9' && !ocupat(2, 2)) {
+			tabla[2][2] = 'x';
+		}
+	}
+
+	 if (player1 == '0') {
+		if (pozitie1 == '1' && !ocupat(0, 0)) {
+			tabla[0][0] = '0';
+		}
+		if (pozitie1 == '2' && !ocupat(0, 1)) {
+			tabla[0][1] = '0';
+		}
+
+		if (pozitie1 == '3' && !ocupat(0, 2)) {
+			tabla[0][2] = '0';
+		}
+
+		if (pozitie1 == '4' && !ocupat(1, 0)) {
+			tabla[1][0] = '0';
+		}
+
+		if (pozitie1 == '5' && !ocupat(1, 1)) {
+			tabla[1][1] = '0';
+		}
+
+		if (pozitie1 == '6' && !ocupat(1, 2)) {
+			tabla[1][2] = '0';
+		}
+
+		if (pozitie1 == '7' && !ocupat(2, 0)) {
+			tabla[2][0] = '0';
+		}
+
+		if (pozitie1 == '8' && !ocupat(2, 1)) {
+			tabla[2][1] = '0';
+		}
+
+		if (pozitie1 == '9' && !ocupat(2, 2)) {
+			tabla[2][2] = '0';
+		}
+	}
+
+	 if (player2 == 'x') {
+		 if (pozitie2 == '1' && !ocupat(0, 0)) {
+			 tabla[0][0] = 'x';
+		 }
+		 if (pozitie2 == '2' && !ocupat(0, 1)) {
+			 tabla[0][1] = 'x';
+		 }
+
+		 if (pozitie2 == '3' && !ocupat(0, 2)) {
+			 tabla[0][2] = 'x';
+		 }
+
+		 if (pozitie2 == '4' && !ocupat(1, 0)) {
+			 tabla[1][0] = 'x';
+		 }
+
+		 if (pozitie2 == '5' && !ocupat(1, 1)) {
+			 tabla[1][1] = 'x';
+		 }
+
+		 if (pozitie2 == '6' && !ocupat(1, 2)) {
+			 tabla[1][2] = 'x';
+		 }
+
+		 if (pozitie2 == '7' && !ocupat(2, 0)) {
+			 tabla[2][0] = 'x';
+		 }
+
+		 if (pozitie2 == '8' && !ocupat(2, 1)) {
+			 tabla[2][1] = 'x';
+		 }
+
+		 if (pozitie2 == '9' && !ocupat(2, 2)) {
+			 tabla[2][2] = 'x';
+		 }
+	 }
+
+	 if (player2 == '0') {
+		 if (pozitie2 == '1' && !ocupat(0, 0)) {
+			 tabla[0][0] = '0';
+		 }
+		 if (pozitie2 == '2' && !ocupat(0, 1)) {
+			 tabla[0][1] = '0';
+		 }
+
+		 if (pozitie2 == '3' && !ocupat(0, 2)) {
+			 tabla[0][2] = '0';
+		 }
+
+		 if (pozitie2 == '4' && !ocupat(1, 0)) {
+			 tabla[1][0] = '0';
+		 }
+
+		 if (pozitie2 == '5' && !ocupat(1, 1)) {
+			 tabla[1][1] = '0';
+		 }
+
+		 if (pozitie2 == '6' && !ocupat(1, 2)) {
+			 tabla[1][2] = '0';
+		 }
+
+		 if (pozitie2 == '7' && !ocupat(2, 0)) {
+			 tabla[2][0] = '0';
+		 }
+
+		 if (pozitie2 == '8' && !ocupat(2, 1)) {
+			 tabla[2][1] = '0';
+		 }
+
+		 if (pozitie2 == '9' && !ocupat(2, 2)) {
+			 tabla[2][2] = '0';
+		 }
+	 }
+	 change_board();
+}
+
+void combinatii() {
+	if (tabla[0][0] == 'x' && tabla[0][1] == 'x' && tabla[0][2] == 'x') {
+		castigator = 'x';
+		done = true;
+	}
+	if (tabla[0][0] == '0' && tabla[0][1] == '0' && tabla[0][2] == '0') {
+		castigator = '0';
+		done = true;
+	}
+	if (tabla[1][0] == 'x' && tabla[1][1] == 'x' && tabla[1][2] == 'x') {
+		castigator = 'x';
+		done = true;
+	}
+	if (tabla[1][0] == '0' && tabla[1][1] == '0' && tabla[1][2] == '0') {
+		castigator = '0';
+		done = true;
+	}
+	if (tabla[2][0] == 'x' && tabla[2][1] == 'x' && tabla[2][2] == 'x') {
+		castigator = 'x';
+		done = true;
+	}
+	if (tabla[2][0] == '0' && tabla[2][1] == '0' && tabla[2][2] == '0') {
+		castigator = '0';
+		done = true;
+	}
+	if (tabla[0][0] == 'x' && tabla[1][0] == 'x' && tabla[2][0] == 'x') {
+		castigator = 'x';
+		done = true;
+	}
+	if (tabla[0][0] == '0' && tabla[1][0] == '0' && tabla[2][0] == '0') {
+		castigator = '0';
+		done = true;
+	}
+	if (tabla[0][1] == 'x' && tabla[1][1] == 'x' && tabla[2][1] == 'x') {
+		castigator = 'x';
+		done = true;
+	}
+	if (tabla[0][1] == '0' && tabla[1][1] == '0' && tabla[2][1] == '0') {
+		castigator = '0';
+		done = true;
+	}
+	if (tabla[0][2] == 'x' && tabla[1][2] == 'x' && tabla[2][2] == 'x') {
+		castigator = 'x';
+		done = true;
+	}
+	if (tabla[0][2] == '0' && tabla[1][2] == '0' && tabla[2][2] == '0') {
+		castigator = '0';
+		done = true;
+	}
+	if (tabla[0][0] == 'x' && tabla[1][1] == 'x' && tabla[2][2] == 'x') {
+		castigator = 'x';
+		done = true;
+	}
+	if (tabla[0][0] == '0' && tabla[1][1] == '0' && tabla[2][2] == '0') {
+		castigator = '0';
+		done = true;
+	}
+	if (tabla[0][2] == 'x' && tabla[1][1] == 'x' && tabla[2][0] == 'x') {
+		castigator = 'x';
+		done = true;
+	}
+	if (tabla[0][2] == '0' && tabla[1][1] == '0' && tabla[2][0] == '0') {
+		castigator = '0';
+		done = true;
+	}
+}
+
+
+int main() {
+
+	draw();
+	alegere();
+	while (!done) {
+		mutare1();
+		mutare2();
+		schimbare_tabla();
+		combinatii();
+	}
+	if (done == true)
+		cout << "A castigat: " << castigator;
+
+	return 0;
+}
